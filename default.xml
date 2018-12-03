@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+  <default sync-j="4" revision="rocko"/>
+
+  <remote fetch="https://git.yoctoproject.org/git" name="yocto"/>
+  <remote fetch="https://github.com/openembedded" name="oe"/>
+  <remote fetch="https://github.com/meta-qt5" name="qt5"/>
+  <remote fetch="git://github.com/jumpnow" name="jumpnow"/>
+
+  <project remote="yocto" revision="rocko" name="poky" path="sources/poky"/>
+  <project remote="oe" revision="rocko" name="meta-openembedded" path="sources/meta-openembedded"/>
+  <project remote="qt5" revision="rocko" name="meta-qt5" path="sources/meta-qt5"/>
+  <project remote="yocto" revision="rocko" name="meta-security" path="sources/meta-security"/>
+  <project remote="jumpnow" revision="rocko" name="meta-rpi" path="sources/meta-bbb"/>
+</manifest>

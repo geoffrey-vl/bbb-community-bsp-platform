@@ -1,0 +1,53 @@
+= BeagleBone Black Community BSP
+
+To get the BSP you need to have `repo` installed and use it as:
+
+Install the `repo` utility:
+
+[source,console]
+$: mkdir ~/bin
+$: curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+$: chmod a+x ~/bin/repo
+$: PATH=${PATH}:~/bin
+
+Download the BSP source:
+
+[source,console]
+$: mkdir bbb-community-bsp
+$: cd bbb-community-bsp
+$: repo init -u https://github.com/geoffrey-vl/bbb-community-bsp-platform -b rocko
+$: repo sync
+
+At the end of the commands you have every metadata you need to start work with.
+The source code is checked out at `bbb-community-bsp/sources`.
+You can use any directory to host your build.
+As a personal favor I'm using `bbb-community-bsp/build` as build folder.
+
+To configure the build:
+
+[source,console]
+$: chmod a+x .repo/manifests/setup
+$: .repo/manifests/setup
+
+Afterwards you may want to edit the build/conf/local.conf to set the correct machine.
+
+To start a simple image build:
+
+[source,console]
+$: source sources/poky/oe-init-build-env build
+$: bitbake console-image
+
+Other images:
+
+* ap-image
+* audio-image
+* console-basic-image
+* console-image
+* flask-image
+* gumsense-image
+* iot-image
+* pyqt5-image
+* qt5-basic-image
+* qt5-image
+
+More documentation at http://www.jumpnowtek.com/rpi/BeagleBone-Systems-with-Yocto.html
