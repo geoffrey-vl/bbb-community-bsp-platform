@@ -26,8 +26,8 @@ As a personal favor I'm using `bbb-community-bsp/build` as build folder.
 To configure the build:
 
 [source,console]
-$: chmod a+x .repo/manifests/setup
-$: .repo/manifests/setup
+$: chmod a+x .repo/manifests/setup.sh
+$: .repo/manifests/setup.sh
 
 Afterwards you may want to edit the build/conf/local.conf to set the correct machine.
 
