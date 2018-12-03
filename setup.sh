@@ -6,6 +6,7 @@ echo $REPODIR
 
 source sources/poky/oe-init-build-env build
 
+# replace content of the bblayers.conf
 cat <<EOF > conf/bblayers.conf
 # POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayers.conf
 # changes incompatibly
@@ -28,4 +29,9 @@ BBLAYERS ?= " \\
 "
 EOF
 
+# create local.conf
 cp ../sources/meta-bbb/conf/local.conf.sample conf/local.conf
+# replace root's password into 'password'
+sed -i -e 's/jumpnowtek/password/g' conf/local.conf
+# add sdcard
+echo  'IMAGE_FSTYPES+="sdcard"' >> conf/local.conf
