@@ -26,6 +26,7 @@ BBLAYERS ?= " \\
     ${REPODIR}/sources/meta-qt5 \\
     ${REPODIR}/sources/meta-bbb \\
     ${REPODIR}/sources/meta-security \\
+    ${REPODIR}/sources/meta-mbed-cloud-client \\
 "
 EOF
 
