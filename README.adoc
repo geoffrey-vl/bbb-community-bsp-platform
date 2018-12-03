@@ -39,15 +39,15 @@ $: bitbake console-image
 
 Other images:
 
-* ap-image
-* audio-image
-* console-basic-image
+* basic-image
+* bluetooth-image
+* can-console-image
 * console-image
-* flask-image
-* gumsense-image
+* installer-image
 * iot-image
-* pyqt5-image
-* qt5-basic-image
 * qt5-image
+* qt5-x11-image
+* usbproxy-image
+* x11-image
 
 More documentation at http://www.jumpnowtek.com/rpi/BeagleBone-Systems-with-Yocto.html
