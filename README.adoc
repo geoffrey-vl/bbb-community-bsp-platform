@@ -15,7 +15,7 @@ Download the BSP source:
 [source,console]
 $: mkdir bbb-community-bsp
 $: cd bbb-community-bsp
-$: repo init -u https://github.com/geoffrey-vl/bbb-community-bsp-platform -b rocko
+$: repo init -u https://github.com/geoffrey-vl/bbb-community-bsp-platform -b mbed-pelion
 $: repo sync
 
 At the end of the commands you have every metadata you need to start work with.
@@ -49,5 +49,11 @@ Other images:
 * qt5-x11-image
 * usbproxy-image
 * x11-image
+
+To create an sd card:
+
+[source,console]
+$: chmod a+x .repo/manifests/write2sd.sh
+$: .repo/manifests/write2sd.sh
 
 More documentation at http://www.jumpnowtek.com/rpi/BeagleBone-Systems-with-Yocto.html
