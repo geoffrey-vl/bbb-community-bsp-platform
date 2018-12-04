@@ -1,54 +1,44 @@
 #!/bin/bash
 
 selectsdcard() {
-    echo "##############################################"
-    echo "# Choose your SD card                        #"
-    echo "##############################################"
-    lsblk -dn -o NAME,SIZE
     while true; do
-        echo "# Device to format: "
+        echo "List of devices: "
+        lsblk -dn -o NAME,SIZE
+        echo "Device to format: "
         read SDCARD
+        return
         echo "selected: $SDCARD"
         if lsblk -dn -o NAME | grep "$SDCARD"; then
-            
-            break;
+            break
         else
             echo "Device not supported... retry"
         fi
     done
-    echo "##############################################"
-    echo "# using card [$SDCARD]"
-    echo "##############################################"
+    echo "using card [$SDCARD]"
     echo ""
 }
 
-createPartitions() {
-    selectsdcard
-
-
-    echo "##############################################"
-    echo "# making partitions                          #"
-    echo "##############################################"
-    sudo ../sources/meta-bbb/scripts/mk2parts.sh $SDCARD
+getTempBuildFolder()
+{
+    CURRDIR=${PWD}
+    cd "$SCRIPTLOCATION"
+    cd "../../build/tmp"
+    YOCTOTEMPDIR=${PWD}
+    cd "$CURRDIR"
 }
 
-writePartitions() {
-    selectsdcard
-
-    echo "##############################################"
-    echo "# making preparations                        #"
-    echo "##############################################"
-    MOUNTDIR="/media/card"
+setupTempMountFolder()
+{
+    MOUNTDIR="/media/write2sdmountfolder"
     if [ ! -d "$MOUNTDIR" ]; then
         echo "Creating directory $MOUNTDIR"
         sudo mkdir "$MOUNTDIR"
     else
         echo "Using $MOUNTDIR"
-        umount "/media/card"
+        umount "$MOUNTDIR"
     fi	
 
     echo "exporting variables"
-    YOCTOTEMPDIR=${PWD}
     export OETMP="$YOCTOTEMPDIR"
     export MACHINE=beaglebone
 
@@ -57,16 +47,64 @@ writePartitions() {
     PART2="/dev/$SDCARD""p2"
     umount $PART1
     umount $PART2
+}
 
-    echo "##############################################"
-    echo "# copy boot partition                        #"
-    echo "##############################################"
+createPartitions() {
+    echo "# creating partitions..."
+    sudo ../sources/meta-bbb/scripts/mk2parts.sh $SDCARD
+}
+
+writeBootPartition()
+{
+    echo "# copying boot partition..."
     ../sources/meta-bbb/scripts/copy_boot.sh $SDCARD
+}
 
-    echo "##############################################"
-    echo "# copy boot partition                        #"
-    echo "##############################################"
+writeRootFsPartition()
+{
+    echo "# copying rootfs partition..."
     IMAGENAME="console"
     HOSTNME="bbbmbed"
     ../sources/meta-bbb/scripts/copy_rootfs.sh $SDCARD $IMAGENAME $HOSTNME
 }
+
+
+showMainMenu()
+{
+    while true; do
+        echo "# Menu options: "
+        echo "# 1. create partitions"
+        echo "# 2. write boot partition"
+        echo "# 3. write rootfs partition"
+        echo "# 4. quit"
+        echo "# Select task (1...4): "
+        read MENUITEM
+        echo "selected: $MENUITEM"
+        if [ "$MENUITEM" -lt 1 ] || [ "$MENUITEM" -gt 4 ] ; then
+            echo "illegal option... retry"   
+        elif [ "$MENUITEM" -eq "1" ]; then
+            createPartitions
+        elif [ "$MENUITEM" -eq "2" ]; then
+            writeBootPartition
+        elif [ "$MENUITEM" -eq "3" ]; then
+            writeRootFsPartition
+        else
+            echo "exiting..."
+            break
+        fi
+    done
+}
+
+
+echo "##############################################"
+echo "# Write2SD                                   #"
+echo "##############################################"
+SCRIPTLOCATION="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+echo "Script location: $SCRIPTLOCATION"
+getTempBuildFolder
+echo "Yocto build temp location: $YOCTOTEMPDIR"
+
+selectsdcard
+setupTempMountFolder
+
+showMainMenu
