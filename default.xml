@@ -6,9 +6,9 @@
   <remote fetch="https://git.yoctoproject.org/git" name="yocto"/>
   <remote fetch="https://github.com/openembedded" name="oe"/>
   <remote fetch="https://github.com/meta-qt5" name="qt5"/>
-  <remote fetch="git://github.com/jumpnow" name="jumpnow"/>
-  <remote fetch="git://github.com/ARMmbed" name="mbed"/>
-  <remote fetch="git://github.com/geoffrey-vl" name="gvl"/>
+  <remote fetch="https://github.com/jumpnow" name="jumpnow"/>
+  <remote fetch="https://github.com/ARMmbed" name="mbed"/>
+  <remote fetch="https://github.com/geoffrey-vl" name="gvl"/>
 
   <project remote="yocto" revision="rocko" name="poky" path="sources/poky"/>
   <project remote="oe" revision="rocko" name="meta-openembedded" path="sources/meta-openembedded"/>
