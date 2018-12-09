@@ -30,12 +30,13 @@ $: chmod a+x .repo/manifests/setup.sh
 $: .repo/manifests/setup.sh
 
 Afterwards you may want to edit the build/conf/local.conf to set the correct machine.
+Also make sure to either update the *MBED_CLOUD_IDENTITY_CERT_FILE* variable inside build/conf/local.conf or make sure to copy the certificate into the build/conf folder.
 
 To start a simple image build:
 
 [source,console]
 $: source sources/poky/oe-init-build-env build
-$: bitbake console-image
+$: bitbake mbed-cloud-client-example-nofwup-image.bb
 
 Other images:
 
@@ -49,6 +50,9 @@ Other images:
 * qt5-x11-image
 * usbproxy-image
 * x11-image
+* mbed-cloud-console-image
+* mbed-cloud-client-example-nofwup-image.bb
+* mbed-cloud-client-example-image
 
 To create an sd card:
 
