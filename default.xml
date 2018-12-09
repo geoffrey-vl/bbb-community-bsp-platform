@@ -14,6 +14,6 @@
   <project remote="oe" revision="rocko" name="meta-openembedded" path="sources/meta-openembedded"/>
   <project remote="qt5" revision="rocko" name="meta-qt5" path="sources/meta-qt5"/>
   <project remote="yocto" revision="rocko" name="meta-security" path="sources/meta-security"/>
-  <project remote="gvl" revision="rocko" name="meta-bbb" path="sources/meta-bbb"/>
+  <project remote="jumpnow" revision="rocko" name="meta-bbb" path="sources/meta-bbb"/>
   <project remote="gvl" revision="include-extras" name="meta-mbed-cloud-client" path="sources/meta-mbed-cloud-client"/>
 </manifest>
