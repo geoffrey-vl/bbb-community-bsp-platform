@@ -35,4 +35,4 @@ cp ../sources/meta-bbb/conf/local.conf.sample conf/local.conf
 # replace root's password into 'password'
 sed -i -e 's/jumpnowtek/password/g' conf/local.conf
 #add link to mbed cloud client certificate file
-echo MBED_CLOUD_IDENTITY_CERT_FILE = "\"${PWD}/build/conf/mbed_cloud_dev_credential.c\"" >> conf/local.conf
+echo MBED_CLOUD_IDENTITY_CERT_FILE = "\"${PWD}/conf/mbed_cloud_dev_credential.c\"" >> conf/local.conf
