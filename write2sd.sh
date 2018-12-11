@@ -1,5 +1,8 @@
 #!/bin/bash
 
+IMAGENAME="console"
+HOSTNME="bbbmbed"
+
 selectsdcard() {
     while true; do
         echo "List of devices: "
@@ -15,6 +18,16 @@ selectsdcard() {
         fi
     done
     echo "using card [$SDCARD]"
+    echo ""
+}
+
+selectImage() {
+	echo "List of images: "
+	echo "console"
+	echo "mbed-cloud-client-example-nofwup"
+	echo "Enter the image to select: "
+	read IMAGENAME
+    echo "using image [$IMAGENAME]"
     echo ""
 }
 
@@ -63,8 +76,6 @@ writeBootPartition()
 writeRootFsPartition()
 {
     echo "# copying rootfs partition..."
-    IMAGENAME="console"
-    HOSTNME="bbbmbed"
     ../sources/meta-bbb/scripts/copy_rootfs.sh $SDCARD $IMAGENAME $HOSTNME
 }
 
@@ -105,6 +116,7 @@ getTempBuildFolder
 echo "Yocto build temp location: $YOCTOTEMPDIR"
 
 selectsdcard
+selectImage
 setupTempMountFolder
 
 showMainMenu
