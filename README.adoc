@@ -36,7 +36,7 @@ To start a simple image build:
 
 [source,console]
 $: source sources/poky/oe-init-build-env build
-$: bitbake mbed-cloud-client-example-nofwup-image.bb
+$: bitbake mbed-cloud-client-example-nofwup-image
 
 Other images:
 
@@ -51,10 +51,10 @@ Other images:
 * usbproxy-image
 * x11-image
 * mbed-cloud-console-image
-* mbed-cloud-client-example-nofwup-image.bb
+* mbed-cloud-client-example-nofwup-image
 * mbed-cloud-client-example-image
 
-To create an sd card:
+To create an sd card, run (from the build folder):
 
 [source,console]
 $: chmod a+x .repo/manifests/write2sd.sh
