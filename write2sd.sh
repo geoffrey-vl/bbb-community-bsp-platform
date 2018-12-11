@@ -69,6 +69,8 @@ createPartitions() {
 
 writeBootPartition()
 {
+    echo "# copying eEnv..."
+    cp ../sources/meta-bbb/scripts/uEnv.txt-example $YOCTOTEMPDIR/deploy/images/beaglebone/uEnv.txt
     echo "# copying boot partition..."
     ../sources/meta-bbb/scripts/copy_boot.sh $SDCARD
 }
