@@ -2,6 +2,7 @@
 
 IMAGENAME="console"
 HOSTNME="bbbmbed"
+MACHINE=beaglebone
 
 selectsdcard() {
     while true; do
@@ -42,7 +43,7 @@ getTempBuildFolder()
 
 setupTempMountFolder()
 {
-    MOUNTDIR="/media/write2sdmountfolder"
+    MOUNTDIR="/media/card"
     if [ ! -d "$MOUNTDIR" ]; then
         echo "Creating directory $MOUNTDIR"
         sudo mkdir "$MOUNTDIR"
@@ -53,7 +54,7 @@ setupTempMountFolder()
 
     echo "exporting variables"
     export OETMP="$YOCTOTEMPDIR"
-    export MACHINE=beaglebone
+    export MACHINE="$MACHINE"
 
     echo "unmounting stuff"
     PART1="/dev/$SDCARD""p1"
@@ -70,7 +71,7 @@ createPartitions() {
 writeBootPartition()
 {
     echo "# copying eEnv..."
-    cp ../sources/meta-bbb/scripts/uEnv.txt-example $YOCTOTEMPDIR/deploy/images/beaglebone/uEnv.txt
+    cp ../sources/meta-bbb/scripts/uEnv.txt-example $YOCTOTEMPDIR/deploy/images/$MACHINE/uEnv.txt
     echo "# copying boot partition..."
     ../sources/meta-bbb/scripts/copy_boot.sh $SDCARD
 }
